@@ -1,0 +1,26 @@
+ protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            SqlConnection connection = new SqlConnection("data source=.; database=Sample; integrated security=SSPI"); ;
+
+            try
+            {
+
+                var sql = "Select * from tblProducat Where Name like" +"'%"+  "Server" +  "%'";
+
+                SqlCommand cmd = new SqlCommand(sql, connection);
+
+                connection.Open();
+                GridViewData.DataSource = cmd.ExecuteReader();
+                GridViewData.DataBind();
+            }
+            catch (Exception ex)
+            {
+                // Handle Exceptions, if any
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
